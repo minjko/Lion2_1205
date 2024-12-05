@@ -1,18 +1,27 @@
 package app.controller;
 
 
+import app.entity.Emp;
+
 import app.dto.EmpUpdateDto;
 import app.dto.EmpUpdateRequest;
 
 import app.entity.Dept;
 import app.entity.Emp;
 import app.repository.DeptRepository;
+
 import app.repository.EmpRepository;
 
 import app.request.EmpRequest;
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
@@ -64,6 +73,15 @@ public class EmpAPIController {
         Emp emp = empRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("사원 정보가 존재하지 않습니다."));
 
+
+
+    
+    @DeleteMapping("/emp/{empno}")
+    public Emp deleteEmpByEmpno(@PathVariable Integer empno) {
+    	Emp emp = empRepository.findById(empno).orElseThrow();
+    	empRepository.deleteById(emp.getEmpno());
+    	return emp;
+    }
 
         EmpUpdateDto dto = EmpUpdateDto.of(update);
         Dept dept = deptRepository.findById(update.getDeptno())
