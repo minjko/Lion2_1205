@@ -90,21 +90,18 @@ public class EmpAPIController {
         Emp emp = empRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("사원 정보가 존재하지 않습니다."));
 
-
-
-    
-    @DeleteMapping("/emp/{empno}")
-    public Emp deleteEmpByEmpno(@PathVariable Integer empno) {
-    	Emp emp = empRepository.findById(empno).orElseThrow();
-    	empRepository.deleteById(emp.getEmpno());
-    	return emp;
-    }
-
         EmpUpdateDto dto = EmpUpdateDto.of(update);
         Dept dept = deptRepository.findById(update.getDeptno())
                 .orElseThrow(() -> new NoSuchElementException("부서 정보가 존재하지 않습니다."));
 
         emp.update(dto, dept);
         return emp;
+    }
+
+    @DeleteMapping("/emp/{empno}")
+    public Emp deleteEmpByEmpno(@PathVariable Integer empno) {
+    	Emp emp = empRepository.findById(empno).orElseThrow();
+    	empRepository.deleteById(emp.getEmpno());
+    	return emp;
     }
 }
