@@ -29,7 +29,13 @@ public class EmpAPIController {
     @GetMapping("/api/emps")
     public List<Emp> getEmps() {
     	List<Emp> emps = empRepository.findAll();
-    	return emps;
+    	
+    	if (emps != null) {
+    		return emps;
+    	} else {
+    		return "{\"msg\":\"사원정보가 존재하지 않습니다\"}";
+    	}
+    	
     }
 
     @GetMapping("/api/emp/{id}")
