@@ -4,8 +4,19 @@
 # properties
 *.properties
 
+# idea
+.idea
+
+# iml
+*.iml
+
+# target
+target
+
 ### Eclipse ###
 .metadata
+.classpath
+.project
 bin/
 tmp/
 *.tmp
