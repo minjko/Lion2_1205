@@ -33,7 +33,7 @@ public class EmpAPIController {
     	if (emps != null) {
     		return emps;
     	} else {
-    		return "{\"msg\":\"사원정보가 존재하지 않습니다\"}";
+    		return (List<Emp>) new NoSuchElementException("사원 정보가 존재하지 않습니다.");
     	}
     	
     }
