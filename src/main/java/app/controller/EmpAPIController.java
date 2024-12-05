@@ -8,15 +8,12 @@ import app.dto.EmpUpdateRequest;
 
 import app.entity.Dept;
 import app.repository.DeptRepository;
-
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import app.repository.EmpRepository;
-
 import app.request.EmpRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -50,7 +47,7 @@ public class EmpAPIController {
     	if (emps != null) {
     		return emps;
     	} else {
-    		return (List<Emp>) new NoSuchElementException("사원 정보가 존재하지 않습니다.");
+    		throw new NoSuchElementException("사원 정보가 존재하지 않습니다.");
     	}
     	
     }
