@@ -1,5 +1,7 @@
 package app.entity;
 
+import app.dto.EmpUpdateDto;
+import app.dto.EmpUpdateRequest;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -49,6 +51,17 @@ public class Emp {
         this.hiredate = hiredate;
         this.sal = sal;
         this.comm = comm;
+        this.dept = dept;
+    }
+
+    public void update(EmpUpdateDto updateEmp, Dept dept) {
+        this.empno = updateEmp.getEmpno();
+        this.ename = updateEmp.getEname();
+        this.job = updateEmp.getJob();
+        this.mgr = updateEmp.getMgr();
+        this.hiredate = updateEmp.getHiredate();
+        this.sal = updateEmp.getSal();
+        this.comm = updateEmp.getComm();
         this.dept = dept;
     }
 }
