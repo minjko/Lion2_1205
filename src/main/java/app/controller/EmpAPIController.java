@@ -7,8 +7,13 @@ import app.dto.EmpUpdateDto;
 import app.dto.EmpUpdateRequest;
 
 import app.entity.Dept;
-import app.entity.Emp;
 import app.repository.DeptRepository;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import app.repository.EmpRepository;
 
@@ -37,6 +42,18 @@ public class EmpAPIController {
 
     private final EmpRepository empRepository;
     private final DeptRepository deptRepository;
+    
+    @GetMapping("/api/emps")
+    public List<Emp> getEmps() {
+    	List<Emp> emps = empRepository.findAll();
+    	
+    	if (emps != null) {
+    		return emps;
+    	} else {
+    		return (List<Emp>) new NoSuchElementException("사원 정보가 존재하지 않습니다.");
+    	}
+    	
+    }
 
 
 
