@@ -61,7 +61,7 @@ public class EmpAPIController {
     @PostMapping("/api/emp")
     public Emp registerEmp(@RequestBody EmpRequest empRequest) {
 
-        Dept dept = deptRepository.findById(empRequest.getDeptno()).orElseThrow(); // deptno 로 dept 찾기
+        Dept dept = deptRepository.findById(empRequest.getDeptno()).orElseThrow(() -> new NoSuchElementException("부서 정보가 존재하지 않습니다.")); // deptno 로 dept 찾기
 
         // 새로운 emp 생성
         Emp newEmp = Emp.builder()
