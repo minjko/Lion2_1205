@@ -5,6 +5,12 @@ import app.dto.EmpUpdateRequest;
 import app.entity.Dept;
 import app.entity.Emp;
 import app.repository.DeptRepository;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import app.entity.Emp;
 import app.repository.EmpRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +18,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
+
 @RequiredArgsConstructor
 @RestController
 public class EmpAPIController {
 
     private final EmpRepository empRepository;
     private final DeptRepository deptRepository;
+    
+    @GetMapping("/api/emps")
+    public List<Emp> getEmps() {
+    	List<Emp> emps = empRepository.findAll();
+    	return emps;
+    }
 
     @GetMapping("/api/emp/{id}")
     public Emp getEmpById(@PathVariable Integer id) {
