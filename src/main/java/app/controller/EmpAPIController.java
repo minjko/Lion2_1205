@@ -98,7 +98,7 @@ public class EmpAPIController {
         return emp;
     }
 
-    @DeleteMapping("/emp/{empno}")
+    @DeleteMapping("/api/emp/{empno}")
     public Emp deleteEmpByEmpno(@PathVariable Integer empno) {
     	Emp emp = empRepository.findById(empno)
     			.orElseThrow(() -> new NoSuchElementException("사원 정보가 존재하지 않습니다."));
